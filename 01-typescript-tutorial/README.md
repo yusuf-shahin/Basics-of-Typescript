@@ -24,6 +24,8 @@
 ### Type Alias
 
 - [Type Alias](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#type-alias-1)
+- readonly
+- [Type Intersection Type](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#intersection-types)
 
 ### Interface
 
@@ -41,6 +43,7 @@
 ### Type
 
 - [Type Assertion](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#type-assertion)
+- [Type Unknown](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#type---unknown)
 
 ## Install
 
@@ -513,6 +516,28 @@ console.log(processData("Hello", { reverse: true })) // Output: OLLEH
 
 ## Type Alias
 
+### **readonly**
+
+- In TypeScript, readonly is a modifier that you can use to make properties of objects immutable, meaning they cannot be changed after being initialized. Once a readonly property is assigned a value, it cannot be reassigned.
+
+```ts
+interface Person {
+  readonly name: string
+  readonly age: number
+}
+
+const person: Person = {
+  name: "Alice",
+  age: 30,
+}
+
+console.log(person.name) // Output: Alice
+console.log(person.age) // Output: 30
+
+// Attempting to modify the readonly properties will result in an error
+// person.name = "Bob"; // Error: Cannot assign to 'name' because it is a read-only property.
+```
+
 A type alias in TypeScript is a new name or shorthand for an existing type, making it easier to reuse complex types. However, it's important to note that it doesn't create a new unique type - it's just an alias.All the same rules apply to the aliased type, including the ability to mark properties as optional or readonly.
 
 ```ts
@@ -768,7 +793,7 @@ const result = deepWork.printTitle("is an awesome book")
 console.log(result)
 ```
 
-## Challenge
+### Challenge
 
 - Start by defining an interface Computer using the interface keyword. This will serve as a blueprint for objects that will be of this type.
 - Inside the interface, define the properties that the object should have. In this case, we have id, brand, ram, and storage.
@@ -1053,6 +1078,8 @@ console.log(susan)
 
 ## Enums
 
+- [Docs](https://www.typescriptlang.org/docs/handbook/enums.html)
+
 Enums in TypeScript allow us to define a set of named constants. Using enums can make it easier to document intent, or create a set of distinct cases.
 
 ```ts
@@ -1079,7 +1106,37 @@ console.log(response)
 
 ### Enums - Gotcha : Reverse Mapping
 
+Enums (short for enumerations) in TypeScript are a way to define a set of named constants. They make it easier to work with a group of related values, especially when you want to assign meaningful names to these values.
+
+Here’s a simple example:
+
+```ts
+enum Direction {
+  North,
+  South,
+  East,
+  West,
+}
+
+let currentDirection: Direction = Direction.West
+
+console.log(currentDirection) // 3
+```
+
 In a numeric enum, TypeScript creates a reverse mapping from the numeric values to the enum member names. This means that if you assign a numeric value to an enum member, you can use that numeric value anywhere the enum type is expected.
+
+```ts
+enum ServerResponseStatus {
+  Success = "Success",
+  Error = "Error",
+}
+
+console.log(ServerResponseStatus["0"]) // "Success"
+console.log(ServerResponseStatus["1"]) // "Error"
+
+console.log(ServerResponseStatus.Success) // "0"
+console.log(ServerResponseStatus.Error) // "1"
+```
 
 In a string enum, TypeScript does not create a reverse mapping. This means that if you assign a string value to an enum member, you cannot use that string value anywhere the enum type is expected. You must use the enum member itself.
 
@@ -1175,6 +1232,17 @@ const user: User = createUser({
 })
 
 console.log(user)
+
+// in console
+{
+  "id": 1,
+  "name": "John Doe",
+  "role": 0,
+  "contact": [
+    "john.doe@example.com",
+    "123-456-7890"
+  ]
+}
 ```
 
 ## Type Assertion
@@ -1409,7 +1477,7 @@ Type guarding is a term in TypeScript that refers to the ability to narrow down 
 
 In the context of TypeScript, a type guard is some expression that performs a runtime check that guarantees the type in some scope.
 
-## Challenge - "typeof" guard
+### Challenge - "typeof" guard
 
 - starter code
 
@@ -1443,7 +1511,7 @@ function checkValue(value: ValueType) {
 checkValue(value)
 ```
 
-## Challenge - Equality Narrowing
+### Challenge - Equality Narrowing
 
 In TypeScript, equality narrowing is a form of type narrowing that occurs when you use equality checks like === or !== in your code
 
@@ -1473,7 +1541,7 @@ function makeSound(animal: Animal) {
 }
 ```
 
-## Challenge - check for property
+### Challenge - check for property
 
 The "in" operator in TypeScript is used to narrow down the type of a variable when used in a conditional statement.It checks if a property or method exists on an object. If it exists, TypeScript will narrow the type to the one that has this property.
 
@@ -1503,7 +1571,7 @@ function makeSound(animal: Animal) {
 }
 ```
 
-## Challenge - "Truthy"/"Falsy" guard
+### Challenge - "Truthy"/"Falsy" guard
 
 In TypeScript, "Truthy"/"Falsy" guard is a simple check for a truthy or falsy value
 
@@ -1530,7 +1598,7 @@ printLength(null) // Outputs: No string provided
 printLength(undefined) // Outputs: No string provided
 ```
 
-## Challenge - "instanceof" type guard
+### Challenge - "instanceof" type guard
 
 The instanceof type guard is a way in TypeScript to check the specific class or constructor function of an object at runtime. It returns true if the object is an instance of the class or created by the constructor function, and false otherwise.
 
@@ -1569,7 +1637,7 @@ console.log(year)
 console.log(random)
 ```
 
-## Challenge - Type Predicate
+### Challenge - Type Predicate
 
 A type predicate is a function whose return type is a special kind of type that can be used to narrow down types within conditional blocks.
 
@@ -1620,7 +1688,7 @@ if (isStudent(person)) {
 }
 ```
 
-## Optional - type "never" gotcha
+### Optional - type "never" gotcha
 
 ```ts
 type Student = {
@@ -1656,7 +1724,7 @@ if (isStudent(person)) {
 }
 ```
 
-## Challenge - Discriminated Unions and exhaustive check using the never type
+### Challenge - Discriminated Unions and exhaustive check using the never type
 
 A discriminated union in TypeScript is a type that can be one of several different types, each identified by a unique literal property (the discriminator), allowing for type-safe handling of each possible variant.
 
