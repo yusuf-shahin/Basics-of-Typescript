@@ -23,7 +23,7 @@
 
 ### Type Alias
 
-- [Type Alias](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#type-alias)
+- [Type Alias](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#type-alias-1)
 
 ### Interface
 
@@ -31,9 +31,16 @@
 - [Interface - Methods](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#interface---methods)
 - [Interface - Methods (more options)](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#interface---methods-more-options)
 
-### [**Interface vs Type Alias**](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#interface-vs-type-alias)
+- [**Interface vs Type Alias**](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#interface-vs-type-alias-1)
 
 ### Tuples & Enums
+
+- [Tuples](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#tuples)
+- [Enums](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#enums)
+
+### Type
+
+- [Type Assertion](https://github.com/yusuf-shahin/Basics-of-Typescript/tree/main/01-typescript-tutorial#type-assertion)
 
 ## Install
 
@@ -1011,6 +1018,8 @@ let tiger: Animal = { [propName]: 5 }
 
 ## Tuples
 
+- [docs](https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types)
+
 In TypeScript, a Tuple is a special type that allows you to create an array where the type of a fixed number of elements is known, but need not be the same - in other words it's an array with fixed length and ordered with fixed types. This is useful when you want to group different types of values together.
 
 Tuples are useful when you want to return multiple values from a function.
@@ -1068,7 +1077,7 @@ const response: ServerResponse = getServerResponse()
 console.log(response)
 ```
 
-## Enums - Gotcha : Reverse Mapping
+### Enums - Gotcha : Reverse Mapping
 
 In a numeric enum, TypeScript creates a reverse mapping from the numeric values to the enum member names. This means that if you assign a numeric value to an enum member, you can use that numeric value anywhere the enum type is expected.
 
